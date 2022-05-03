@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">kjvBiblejava</string>
+
+    // string verse
+    <string name="verse">For God so loved the world, That he gave his only begotten son, That whoever believes in him
+        For God so loved the world, That he gave his only begotten son</string>
+
+
+</resources>
