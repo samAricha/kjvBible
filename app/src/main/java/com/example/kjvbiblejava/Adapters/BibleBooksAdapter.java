@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dacasa.sdakitidistrict.Commoners.Bible;
-import com.dacasa.sdakitidistrict.POJOS.Book;
-import com.dacasa.sdakitidistrict.R;
 import com.example.kjvbiblejava.DB.Bible;
 import com.example.kjvbiblejava.Models.Book;
 import com.example.kjvbiblejava.R;
@@ -20,9 +17,6 @@ import com.example.kjvbiblejava.R;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ere on 3/15/2020.
- */
 public class BibleBooksAdapter extends RecyclerView.Adapter<BibleBooksAdapter.BookHolder>{
 
     Context context;

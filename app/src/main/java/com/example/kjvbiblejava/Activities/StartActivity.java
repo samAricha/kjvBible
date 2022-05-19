@@ -26,26 +26,27 @@ import android.widget.Toast;
 
 import com.example.kjvbiblejava.Adapters.BibleBooksAdapter;
 import com.example.kjvbiblejava.DB.Bible;
+import com.example.kjvbiblejava.DB.DBHelper;
 import com.example.kjvbiblejava.DB.paths;
 import com.example.kjvbiblejava.Models.Book;
 import com.example.kjvbiblejava.Models.Chapter;
 import com.example.kjvbiblejava.R;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity implements BibleBooksAdapter.BookListener{
 
     View quick_nav,go,cover;
     ProgressBar progressBar;
-    TextView percent_download;
-    ImageButton download_button;
     RecyclerView recycler;
     Bible bible;
     BibleBooksAdapter bibleBooksAdapter;
     ArrayAdapter<String> booksAdapter,chaptersAdapter,verseAdapter;
-    DatabaseReference database;
     Spinner books,chapters,verses;
+    DBHelper dbhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,26 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         bible = new Bible(this);
+        prepareDb();
         initUI();
+    }
+
+    private void prepareDb() {
+        dbhelper = new DBHelper(getApplicationContext());
+
+        //we first of all create the database if not yet created.
+        try {
+            dbhelper.createDatabase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //we then open the db.
+        try {
+            dbhelper.openDatabase();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     private void initUI() {

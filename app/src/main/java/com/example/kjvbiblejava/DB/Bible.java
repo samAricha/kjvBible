@@ -18,15 +18,6 @@ public class Bible extends SQLiteOpenHelper {
         super(context, "bible.db", null, 1);
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-    }
 
     public String bookName(int book_index){
         String name = null;
@@ -103,4 +94,17 @@ public class Bible extends SQLiteOpenHelper {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(paths.bible_path+"/bible.db",null,SQLiteDatabase.OPEN_READWRITE);
         return db;
     }
+
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {}
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {}
+
+
+
+
+
+
+
 }
