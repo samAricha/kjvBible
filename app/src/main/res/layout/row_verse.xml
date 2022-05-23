@@ -21,7 +21,6 @@
         android:id="@+id/verse"
         android:layout_toRightOf="@+id/verse_no"
         android:layout_marginTop="5dp"
-        android:textColor="?attr/textcolor"
         android:layout_marginLeft="3dp"
         android:text="@string/verse"/>
 

@@ -45,7 +45,7 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
     Bible bible;
     BibleBooksAdapter bibleBooksAdapter;
     ArrayAdapter<String> booksAdapter,chaptersAdapter,verseAdapter;
-    Spinner books,chapters,verses;
+    Spinner booksSpinner,chaptersSpinner,versesSpinner;
     DBHelper dbhelper;
 
     @Override
@@ -76,6 +76,7 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
         }
     }
 
+    //INITIALIZING THE UI i.e the BIBLE COVER FOLLOWED BY THE BIBLE BOOKS
     private void initUI() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -84,9 +85,9 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
         progressBar = findViewById(R.id.progressBar);
         quick_nav = findViewById(R.id.quick_nav);
 
-        books = (Spinner)findViewById(R.id.book);
-        chapters = (Spinner)findViewById(R.id.chapter);
-        verses = (Spinner)findViewById(R.id.verse);
+        booksSpinner = (Spinner)findViewById(R.id.book);
+        chaptersSpinner = (Spinner)findViewById(R.id.chapter);
+        versesSpinner = (Spinner)findViewById(R.id.verse);
 
         if (paths.bibleAvailable()){
             populateRecycler();
@@ -95,42 +96,24 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
             quick_nav.setVisibility(View.GONE);
         }
 
-        go = findViewById(R.id.go);
-        go.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(),ChapterActivity.class);
-                intent.putExtra("book",books.getSelectedItemPosition());
-                intent.putExtra("chapter",chapters.getSelectedItemPosition()+1);
-                intent.putExtra("verse_from",verses.getSelectedItemPosition());
-                startActivity(intent);
-            }
-        });
 
+        //DISPLAYING THE BIBLE COVER BEFORE DISPLAYING THE BIBLE BOOKS
         cover = findViewById(R.id.cover);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 cover.animate().translationX(-700).setDuration(500).setListener(new Animator.AnimatorListener() {
                     @Override
-                    public void onAnimationStart(Animator animator) {
-
-                    }
+                    public void onAnimationStart(Animator animator) {}
 
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         cover.setVisibility(View.GONE);
                     }
-
                     @Override
-                    public void onAnimationCancel(Animator animator) {
-
-                    }
-
+                    public void onAnimationCancel(Animator animator) {}
                     @Override
-                    public void onAnimationRepeat(Animator animator) {
-
-                    }
+                    public void onAnimationRepeat(Animator animator) {}
                 });
             }
         },2000);
@@ -138,18 +121,18 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
 
     }
 
+    //populates the recycler view with books from the bible
     private void populateRecycler() {
-
         recycler = (RecyclerView) findViewById(R.id.recycler);
         recycler.setHasFixedSize(true);
         bibleBooksAdapter = new BibleBooksAdapter(this,R.layout.row_book);
         recycler.setAdapter(bibleBooksAdapter);
         recycler.setLayoutManager(new GridLayoutManager(this, 2));
 
+        //setting up the book spinner
         booksAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line);
         booksAdapter.add("Book");
-        books.setAdapter(booksAdapter);
-
+        booksSpinner.setAdapter(booksAdapter);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -167,15 +150,17 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
             }
         }).start();
 
+        //setting up the chapter spinner
         final ArrayAdapter<String> chaptersAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line);
         chaptersAdapter.add("Chapter");
-        chapters.setAdapter(chaptersAdapter);
+        chaptersSpinner.setAdapter(chaptersAdapter);
 
+        //setting up the verse spinner
         final ArrayAdapter<String> versesAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line);
         versesAdapter.add("Verse");
-        verses.setAdapter(versesAdapter);
+        versesSpinner.setAdapter(versesAdapter);
 
-        books.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        booksSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 chaptersAdapter.clear();
@@ -194,10 +179,10 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
         });
 
 
-        chapters.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        chaptersSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int a, long l) {
-                List verses = bible.getVerses(new Chapter(books.getSelectedItemPosition(),a+1));
+                List verses = bible.getVerses(new Chapter(booksSpinner.getSelectedItemPosition(),a+1));
                 versesAdapter.clear();
                 if (verses.isEmpty())versesAdapter.add("Verse");
                 for (int i = 1; i<verses.size();i++){
