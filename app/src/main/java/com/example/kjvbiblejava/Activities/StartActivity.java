@@ -58,9 +58,9 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
         initUI();
     }
 
+    //Accessing and opening the database
     private void prepareDb() {
         dbhelper = new DBHelper(getApplicationContext());
-
         //we first of all create the database if not yet created.
         try {
             dbhelper.createDatabase();
@@ -95,6 +95,25 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
         }else {
             quick_nav.setVisibility(View.GONE);
         }
+
+        go = findViewById(R.id.go);
+        go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int selectedItemOfMySpinner = booksSpinner.getSelectedItemPosition();
+                String actualPositionOfMySpinner = (String) booksSpinner.getItemAtPosition(selectedItemOfMySpinner);
+                if (actualPositionOfMySpinner.equals("Book")) {
+                    Toast.makeText(getApplicationContext(), "CHOOSE BOOK", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Intent intent = new Intent(getBaseContext(),ChapterActivity.class);
+                intent.putExtra("book",booksSpinner.getSelectedItemPosition());
+                intent.putExtra("chapter",chaptersSpinner.getSelectedItemPosition()+1);
+                intent.putExtra("verse_from",versesSpinner.getSelectedItemPosition());
+                startActivity(intent);
+            }
+        });
 
 
         //DISPLAYING THE BIBLE COVER BEFORE DISPLAYING THE BIBLE BOOKS

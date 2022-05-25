@@ -15,9 +15,6 @@
 
         </activity>
         <activity
-            android:name=".Activities.BibleView"
-            android:exported="false" />
-        <activity
             android:name=".Activities.StartActivity"
             android:exported="true">
             <intent-filter>

@@ -53,7 +53,7 @@
             android:layout_height="42dp"
             android:id="@+id/go"
             android:layout_marginLeft="5dp"
-            android:text="GO"
+            android:text="OPEN"
             android:layout_weight="1"/>
 
     </LinearLayout>

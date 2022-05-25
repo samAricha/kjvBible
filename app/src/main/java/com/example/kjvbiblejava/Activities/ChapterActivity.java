@@ -14,6 +14,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -42,23 +44,25 @@ public class ChapterActivity extends AppCompatActivity implements BibleBooksAdap
         , VerseListing.ChapterInetractor {
 
     DrawerLayout drawerLayout;
+    //recycler and adapter for the books in the quick-nav bar
     RecyclerView books_recycler;
     BibleBooksAdapter bibleBooksAdapter;
     PagerAdapter chapterAdapter;//adapter for the chapters in the books
     ViewPager viewPager;
     Bible bible;
+    //spinner & adapter for the bottom chapter navigator
     ArrayAdapter<String> chaptersSpinnerAdapter;
+    Spinner chapters_spinner;
     public ActionMode actionMode;
     //ActionModeCallback actionModeCallback = new ActionModeCallback();
     SharedPreferences preferences;
     private boolean forResult = false;
-    Spinner chapters_spinner;
     View navigator;
     AppBarLayout appBar;
     ProgressDialog progressDialog;
 
 
-    private int bookId, chapterId, verse_from,verse_to,chapters;
+    private int bookId, chapterId, verse_from,verse_to,totalChapters;
 
 
     @Override
@@ -80,6 +84,7 @@ public class ChapterActivity extends AppCompatActivity implements BibleBooksAdap
         viewPager = (ViewPager)findViewById(R.id.viewpager);
         initUI();
         populateChapters();
+        loadBooks();
 
         if (forResult){
             new Handler().postDelayed(new Runnable() {
@@ -106,8 +111,8 @@ public class ChapterActivity extends AppCompatActivity implements BibleBooksAdap
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(bible.bookName(bookId));
-        getSupportActionBar().setSubtitle("Chapter 1");
+        getSupportActionBar().setTitle(bible.bookName(bookId));//setting the title to book name
+        getSupportActionBar().setSubtitle("Chapter 1");//setting initial chapter to 1
         //toolbar.setNavigationIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_bars).color(Color.WHITE).sizeDp(20));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +121,7 @@ public class ChapterActivity extends AppCompatActivity implements BibleBooksAdap
             }
         });
 
-
+        //assigning the viewpager to an adapter(PagerAdapter)
         chapterAdapter = new PagerAdapter(getSupportFragmentManager(),this);
         viewPager = (ViewPager)findViewById(R.id.viewpager);
         viewPager.setAdapter(chapterAdapter);
@@ -149,6 +154,7 @@ public class ChapterActivity extends AppCompatActivity implements BibleBooksAdap
             }
         });
 
+        //Navigators at the bottom of the page
         navigator = findViewById(R.id.chapter_navigator);
         View move_left = navigator.findViewById(R.id.move_left);
         View move_right = navigator.findViewById(R.id.move_right);
@@ -210,12 +216,15 @@ public class ChapterActivity extends AppCompatActivity implements BibleBooksAdap
 
     //   POPULATING THE CHAPTERS IN THE RECYCLER VIEW
     private void populateChapters() {
+        chapterAdapter.clearAll();
+        chaptersSpinnerAdapter.clear();
+        chaptersSpinnerAdapter.notifyDataSetChanged();
         Toast.makeText(ChapterActivity.this, bible.bookName(bookId) + bible.bookChapters(bookId)+1, Toast.LENGTH_LONG).show();
         chapterAdapter = new PagerAdapter(getSupportFragmentManager(),this);
         viewPager.setAdapter(chapterAdapter);
         // Chapter +1 (includes the last chapter)
-        chapters = bible.bookChapters(bookId)+1;
-        Log.e("CHAPTER DISCOVERED",chapters+"");
+        totalChapters = bible.bookChapters(bookId)+1;
+        Log.e("CHAPTER DISCOVERED",totalChapters+"");
         Log.e("CHAPTER DISCOVERED", bookId + "," + chapterId + "," + verse_from + "," + verse_to);
         if (chapterId > 0){
             getSupportActionBar().setTitle(bible.bookName(bookId));
@@ -244,15 +253,52 @@ public class ChapterActivity extends AppCompatActivity implements BibleBooksAdap
 
 
 
-        for (int a = 1; a < chapters; a++) {
+        for (int a = 1; a < totalChapters; a++) {
             VerseListing verseListing = new VerseListing();
             verseListing.setArguments(P.chapterToBundle(new Chapter(bookId, a)));
             chapterAdapter.addFrag(verseListing, (a) + "");
         }
         chapterAdapter.notifyDataSetChanged();
 
-
+        populateChapterSpinner();
     }
+
+    private void populateChapterSpinner() {
+        chaptersSpinnerAdapter.clear();
+        chapters_spinner.setSelection(0);
+        //+1 chapter (adds the last Chapter)
+        if (totalChapters<1)chaptersSpinnerAdapter.add("Chapter");
+        for (int a = 1; a < totalChapters; a++) {
+            chaptersSpinnerAdapter.add("Ch " + a);
+        }
+    }
+
+
+    public void loadBooks(){
+//        if (progressDialog.isShowing())progressDialog.dismiss();
+//        progressDialog.show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 1; i<67;i++){
+                    String name = bible.bookName(i);
+                    Book book = new Book(i,0,name);
+                    bibleBooksAdapter.addBook(book);
+                }
+                mainHandler.sendEmptyMessage(0);
+            }
+        }).start();
+    }
+
+    Handler mainHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            bibleBooksAdapter.notifyDataSetChanged();
+//            progressDialog.dismiss();
+            drawerLayout.scrollTo(0,0);
+        }
+    };
+
 
     @Override
     public void bookClicked(Book book) {
