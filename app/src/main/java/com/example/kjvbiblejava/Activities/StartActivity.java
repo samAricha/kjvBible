@@ -243,7 +243,7 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
     public void onBackPressed() {
         backPresses++;
         if (backPresses <2){
-            Toast.makeText(StartActivity.this, "Exiting will cancel the download", Toast.LENGTH_LONG).show();
+            Toast.makeText(StartActivity.this, "Double press to exit", Toast.LENGTH_LONG).show();
             return;
         }
         super.onBackPressed();

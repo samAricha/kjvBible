@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bible_ic_laucher_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/grey_background.xml" value="0.102" />
         <entry key="app/src/main/res/layout/activity_bible_view.xml" value="0.10520833333333333" />
         <entry key="app/src/main/res/layout/activity_chapter.xml" value="0.125" />
@@ -23,6 +24,8 @@
         <entry key="app/src/main/res/menu/menu_bible.xml" value="0.1921875" />
         <entry key="app/src/main/res/menu/menu_bible_view.xml" value="0.1734375" />
         <entry key="app/src/main/res/menu/menu_chapters_activity.xml" value="0.1921875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/bible_ic_laucher.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/bible_ic_laucher_round.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -83,16 +83,16 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/cover"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/cover"
-        android:background="@drawable/bible_cover">
+        android:background="@drawable/kjv_bible_cover">
 
         <View
+            android:id="@+id/text"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_centerInParent="true"
-            android:id="@+id/text"/>
+            android:layout_centerInParent="true" />
 
         <ProgressBar
             android:id="@+id/progressBar"
