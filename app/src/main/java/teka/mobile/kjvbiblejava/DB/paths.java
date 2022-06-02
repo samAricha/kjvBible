@@ -1,6 +1,4 @@
-package com.example.kjvbiblejava.DB;
-
-import android.os.Environment;
+package teka.mobile.kjvbiblejava.DB;
 
 import java.io.File;
 

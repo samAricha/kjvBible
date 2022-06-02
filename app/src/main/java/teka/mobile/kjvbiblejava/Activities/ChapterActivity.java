@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava.Activities;
+package teka.mobile.kjvbiblejava.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -25,18 +24,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.kjvbiblejava.Adapters.BibleBooksAdapter;
-import com.example.kjvbiblejava.Adapters.BibleVerseAdapter;
-import com.example.kjvbiblejava.Adapters.PagerAdapter;
-import com.example.kjvbiblejava.DB.Bible;
-import com.example.kjvbiblejava.Fragments.VerseListing;
-import com.example.kjvbiblejava.MISC.P;
-import com.example.kjvbiblejava.Models.Book;
-import com.example.kjvbiblejava.Models.Chapter;
-import com.example.kjvbiblejava.Models.Verse;
-import com.example.kjvbiblejava.R;
+import teka.mobile.kjvbiblejava.Adapters.BibleBooksAdapter;
+import teka.mobile.kjvbiblejava.Adapters.BibleVerseAdapter;
+import teka.mobile.kjvbiblejava.Adapters.PagerAdapter;
+import teka.mobile.kjvbiblejava.DB.Bible;
+import teka.mobile.kjvbiblejava.Fragments.VerseListing;
+import teka.mobile.kjvbiblejava.MISC.P;
+import teka.mobile.kjvbiblejava.Models.Book;
+import teka.mobile.kjvbiblejava.Models.Chapter;
+import teka.mobile.kjvbiblejava.Models.Verse;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.navigation.NavigationView;
+import teka.mobile.kjvbiblejava.R;
+
 
 import java.util.List;
 
@@ -61,10 +61,8 @@ public class ChapterActivity extends AppCompatActivity implements BibleBooksAdap
     AppBarLayout appBar;
     ProgressDialog progressDialog;
 
-
     private int bookId, chapterId, verse_from,verse_to,totalChapters;
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

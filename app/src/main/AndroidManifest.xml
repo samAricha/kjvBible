@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kjvbiblejava">
+    package="teka.mobile.kjvbiblejava">
 
     <application
         android:allowBackup="true"
@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KjvBiblejava">
         <activity
-            android:name=".Activities.TestActivity"
+            android:name="teka.mobile.kjvbiblejava.Activities.TestActivity"
             android:exported="false">
 
         </activity>
         <activity
-            android:name=".Activities.StartActivity"
+            android:name="teka.mobile.kjvbiblejava.Activities.StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.ChapterActivity"
+            android:name="teka.mobile.kjvbiblejava.Activities.ChapterActivity"
             android:exported="false" />
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava.Adapters;
+package teka.mobile.kjvbiblejava.Adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kjvbiblejava.DB.Bible;
-import com.example.kjvbiblejava.Models.Verse;
-import com.example.kjvbiblejava.R;
+import teka.mobile.kjvbiblejava.DB.Bible;
+import teka.mobile.kjvbiblejava.Models.Verse;
+import teka.mobile.kjvbiblejava.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class BibleVerseAdapter extends RecyclerView.Adapter<BibleVerseAdapter.Ve
     List<Verse> verses = new ArrayList();
     List<Verse> originalList = new ArrayList();
     List<Verse> selection = new ArrayList();
-    com.example.kjvbiblejava.DB.Bible bible;
+    Bible bible;
     VerseListener VerseListener;
     Resources r;
     private boolean nightMode = false;

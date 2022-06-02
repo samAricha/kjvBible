@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava.Adapters;
+package teka.mobile.kjvbiblejava.Adapters;
 
 import android.content.Context;
 

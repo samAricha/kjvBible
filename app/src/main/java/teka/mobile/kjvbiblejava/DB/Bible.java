@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava.DB;
+package teka.mobile.kjvbiblejava.DB;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,8 +9,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.kjvbiblejava.Models.Chapter;
-import com.example.kjvbiblejava.Models.Verse;
+import teka.mobile.kjvbiblejava.Models.Chapter;
+import teka.mobile.kjvbiblejava.Models.Verse;
 
 public class Bible extends SQLiteOpenHelper {
 

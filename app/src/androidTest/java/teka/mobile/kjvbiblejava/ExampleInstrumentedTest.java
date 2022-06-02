@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava;
+package teka.mobile.kjvbiblejava;
 
 import android.content.Context;
 

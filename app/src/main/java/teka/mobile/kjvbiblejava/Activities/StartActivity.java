@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava.Activities;
+package teka.mobile.kjvbiblejava.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -18,19 +18,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.kjvbiblejava.Adapters.BibleBooksAdapter;
-import com.example.kjvbiblejava.DB.Bible;
-import com.example.kjvbiblejava.DB.DBHelper;
-import com.example.kjvbiblejava.DB.paths;
-import com.example.kjvbiblejava.Models.Book;
-import com.example.kjvbiblejava.Models.Chapter;
-import com.example.kjvbiblejava.R;
+import teka.mobile.kjvbiblejava.Adapters.BibleBooksAdapter;
+import teka.mobile.kjvbiblejava.DB.Bible;
+import teka.mobile.kjvbiblejava.DB.DBHelper;
+import teka.mobile.kjvbiblejava.DB.paths;
+import teka.mobile.kjvbiblejava.Models.Book;
+import teka.mobile.kjvbiblejava.Models.Chapter;
+import teka.mobile.kjvbiblejava.R;
 
 import java.io.IOException;
 import java.sql.SQLException;

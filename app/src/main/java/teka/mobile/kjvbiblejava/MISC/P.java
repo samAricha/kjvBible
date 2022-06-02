@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava.MISC;
+package teka.mobile.kjvbiblejava.MISC;
 
 import android.animation.Animator;
 import android.content.res.Resources;
@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.ImageView;
 
-import com.example.kjvbiblejava.Models.Chapter;
+import teka.mobile.kjvbiblejava.Models.Chapter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

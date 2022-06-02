@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava.Fragments;
+package teka.mobile.kjvbiblejava.Fragments;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -12,12 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kjvbiblejava.Adapters.BibleVerseAdapter;
-import com.example.kjvbiblejava.DB.Bible;
-import com.example.kjvbiblejava.MISC.P;
-import com.example.kjvbiblejava.Models.Chapter;
-import com.example.kjvbiblejava.Models.Verse;
-import com.example.kjvbiblejava.R;
+import teka.mobile.kjvbiblejava.Adapters.BibleVerseAdapter;
+import teka.mobile.kjvbiblejava.DB.Bible;
+import teka.mobile.kjvbiblejava.MISC.P;
+import teka.mobile.kjvbiblejava.Models.Chapter;
+import teka.mobile.kjvbiblejava.Models.Verse;
+import teka.mobile.kjvbiblejava.R;
 
 import java.util.ArrayList;
 import java.util.List;

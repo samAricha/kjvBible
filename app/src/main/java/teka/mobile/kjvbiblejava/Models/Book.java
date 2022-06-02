@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava.Models;
+package teka.mobile.kjvbiblejava.Models;
 
 public class Book {
 

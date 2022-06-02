@@ -1,4 +1,4 @@
-package com.example.kjvbiblejava.Adapters;
+package teka.mobile.kjvbiblejava.Adapters;
 
 
 import android.annotation.SuppressLint;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.kjvbiblejava.DB.Bible;
-import com.example.kjvbiblejava.Models.Book;
-import com.example.kjvbiblejava.R;
+import teka.mobile.kjvbiblejava.DB.Bible;
+import teka.mobile.kjvbiblejava.Models.Book;
+import teka.mobile.kjvbiblejava.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class BibleBooksAdapter extends RecyclerView.Adapter<BibleBooksAdapter.Bo
     int res;
     List<Book> books = new ArrayList();
     List<Book> originalList = new ArrayList();
-    com.example.kjvbiblejava.DB.Bible bible;
+    Bible bible;
     BookListener bookListener;
 
     public BibleBooksAdapter(Context context, int res) {

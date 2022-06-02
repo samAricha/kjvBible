@@ -1,10 +1,11 @@
-package com.example.kjvbiblejava.Activities;
+package teka.mobile.kjvbiblejava.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.kjvbiblejava.R;
+import teka.mobile.kjvbiblejava.R;
+
 
 public class TestActivity extends AppCompatActivity {
 
