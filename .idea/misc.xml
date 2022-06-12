@@ -26,6 +26,8 @@
         <entry key="app/src/main/res/menu/menu_chapters_activity.xml" value="0.1921875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/bible_ic_laucher.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/bible_ic_laucher_round.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/kjvbible_ic_laucher.xml" value="0.1" />
       </map>
     </option>
   </component>

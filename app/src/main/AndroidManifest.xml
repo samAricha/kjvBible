@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/bible_ic_laucher"
+        android:icon="@mipmap/kjvbible_ic_laucher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/bible_ic_laucher"
+        android:roundIcon="@mipmap/kjvbible_ic_laucher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KjvBiblejava">
         <activity

@@ -62,8 +62,11 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
         //we first of all create the database if not yet created.
         try {
             dbhelper.createDatabase();
+
         } catch (IOException e) {
             e.printStackTrace();
+            throw new Error(e.getMessage());
+
         }
 
         //we then open the db.
@@ -71,11 +74,14 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
             dbhelper.openDatabase();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            throw new Error(throwables.getMessage());
+
         }
     }
 
     //INITIALIZING THE UI i.e the BIBLE COVER FOLLOWED BY THE BIBLE BOOKS
     private void initUI() {
+        Toast.makeText(getApplicationContext(), "welcome", Toast.LENGTH_LONG).show();
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("The Holy Bible");
@@ -87,6 +93,7 @@ public class StartActivity extends AppCompatActivity implements BibleBooksAdapte
         chaptersSpinner = (Spinner)findViewById(R.id.chapter);
         versesSpinner = (Spinner)findViewById(R.id.verse);
 
+        //Toast.makeText(getApplicationContext(), )
         if (paths.bibleAvailable()){
             populateRecycler();
             quick_nav.setVisibility(View.VISIBLE);

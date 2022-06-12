@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private SQLiteDatabase myDataBase;
     private final Context myContext;
     private static final String DATABASE_NAME = "bible.db";
-    public final static String DATABASE_PATH = "/data/data/com.example.kjvbiblejava/databases/";
+    public final static String DATABASE_PATH = "/data/data/teka.mobile.kjvbiblejava/databases/";
     public static final int DATABASE_VERSION = 1;
 
     public DBHelper(Context myContext) {
@@ -30,7 +30,8 @@ public class DBHelper extends SQLiteOpenHelper {
     //Create a empty database on the system
     public void createDatabase() throws IOException
     {
-        boolean dbExist = checkDataBase();
+        //Toast.makeText(myContext, "creating db", Toast.LENGTH_LONG).show();
+        boolean dbExist = paths.bibleAvailable();
         if(dbExist)
         {
             Log.v("DB Exists", "db exists");
@@ -40,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
             //onUpgrade(myDataBase, DATABASE_VERSION_old, DATABASE_VERSION);
         }
 
-        boolean dbExist1 = checkDataBase();
+        boolean dbExist1 = paths.bibleAvailable();
         if(!dbExist1)//if database doesn't exist create db and copy data from db in assests folder to the new db
         {
             this.getReadableDatabase();
@@ -51,12 +52,12 @@ public class DBHelper extends SQLiteOpenHelper {
             }
             catch (IOException e)
             {
-                throw new Error("Error copying database");
+                throw new Error(e.getMessage().toString());
             }
         }
     }
     //Check database already exist or not
-    private boolean checkDataBase()
+    public boolean checkDataBase()
     {
         boolean checkDB = false;
         try
@@ -79,7 +80,6 @@ public class DBHelper extends SQLiteOpenHelper {
     //Copies your database from your local assets-folder to the just created empty database in the system folder
     private void copyDataBase() throws IOException
     {
-
         InputStream mInput = myContext.getAssets().open(DATABASE_NAME);
         String outFileName = DATABASE_PATH + DATABASE_NAME;
         OutputStream mOutput = new FileOutputStream(outFileName);
@@ -107,6 +107,8 @@ public class DBHelper extends SQLiteOpenHelper {
     {
         String myPath = DATABASE_PATH + DATABASE_NAME;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+        //Toast.makeText(myContext, myDataBase.toString(), Toast.LENGTH_LONG).show();
+
     }
 
     public synchronized void closeDataBase()throws SQLException
